@@ -43,6 +43,38 @@ $(document).ready(function() {
         }
     });
 
-    
+    // controlla che un pallino venga clickato
+    $('.fa-circle').click(function() {
+        //salva in una variabile il selettore dell'immagine visualizzata
+        // e il cerchio pieno al momento del click
+        var currentImg = $('img.current-item');
+        var currentPointer = $('.fa-circle.fas');
+
+        // rimuove classe current-item all'immagine corrente
+        currentImg.removeClass('current-item');
+        // cambia le classi fas e far al cerchio pieno attuale
+        currentPointer.toggleClass('fas far');
+
+        // cambia le classi fas e far al cerchio da far diventare pieno
+        $(this).toggleClass('fas far');
+
+        //creazione array contenente tutti i cerchi
+        var roundsArray= $('.fa-circle');
+        //Creazione variabile che conterrà la posizione del cerchio cliccato
+        var pos = -1;
+        //scorre gli elementi degli array e li confronta con l'elemento cliccto
+        //se corrispondono pos = i ed esce dal ciclo
+        for (var i = 0; i < roundsArray.length && pos == -1; i++) {
+            if (roundsArray[i] == $(this)[0]) {
+                pos = i;
+            }
+        }
+
+        //creazione array con tutte le immagini
+        var imgsArray = $('.img-box img');
+        //seleziona l'elemento dell'array in posizione pos e gli aggiunge
+        //la classe current-item
+        imgsArray[pos].classList.add('current-item'); //PERCHE' NON FUNZIONA addClass('currentItem')?
+    });
 
 });
