@@ -58,23 +58,32 @@ $(document).ready(function() {
         // cambia le classi fas e far al cerchio da far diventare pieno
         $(this).toggleClass('fas far');
 
-        //creazione array contenente tutti i cerchi
-        var roundsArray= $('.fa-circle');
-        //Creazione variabile che conterrà la posizione del cerchio cliccato
-        var pos = -1;
-        //scorre gli elementi degli array e li confronta con l'elemento cliccto
-        //se corrispondono pos = i ed esce dal ciclo
-        for (var i = 0; i < roundsArray.length && pos == -1; i++) {
-            if (roundsArray[i] == $(this)[0]) {
-                pos = i;
-            }
-        }
 
-        //creazione array con tutte le immagini
-        var imgsArray = $('.img-box img');
-        //seleziona l'elemento dell'array in posizione pos e gli aggiunge
-        //la classe current-item
-        imgsArray[pos].classList.add('current-item'); //PERCHE' NON FUNZIONA addClass('currentItem')?
+        // /*========= SENZA UTILIZZARE FUNZIONI APPOSITE ===========*/
+        // //creazione array contenente tutti i cerchi
+        // var roundsArray= $('.fa-circle');
+        // //Creazione variabile che conterrà la posizione del cerchio cliccato
+        // var pos = -1;
+        // //scorre gli elementi degli array e li confronta con l'elemento cliccto
+        // //se corrispondono pos = i ed esce dal ciclo
+        // for (var i = 0; i < roundsArray.length && pos == -1; i++) {
+        //     if (roundsArray[i] == $(this)[0]) {
+        //         pos = i;
+        //     }
+        // }
+        //
+        // //creazione array con tutte le immagini
+        // var imgsArray = $('.img-box img');
+        // //seleziona l'elemento dell'array in posizione pos e gli aggiunge
+        // //la classe current-item
+        // imgsArray[pos].classList.add('current-item'); //PERCHE' NON FUNZIONA addClass('currentItem')?
+
+
+        /*=========== UTILIZZANDO FUNZIONI APPOSITE ========= */
+        // Salva la posizione del cerchio clickato
+        var pos = $('.fa-circle').index(this);
+        // Fa visualizzare l'immagine alla posizione salvata precedentemente
+        $('.img-box img').eq(pos).addClass('current-item');
     });
 
 });
